@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Number Guessing</title>
+    <style>
+      body {
+        background-color: #59CD90;
+        color: #3FA7D6;
+        font-family: Arial, sans-serif;
+      }
+      
+      form {
+        line-height: 25px;
+      }
+      
+      h1 {
+        font-family: 'Spicy Rice', cursive;
+        font-size: 5em;
+        overflow-wrap: break-word;
+      }
+      
+      .overlay {
+        width: 80%;
+        min-width: 30%;
+        margin: 3% auto;
+        display: block;
+        padding: 2%;
+        height: 90vh;
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 40px;
+        text-align: center;
+      }
+
+      .submit {
+        color: white;
+        background-color: #3FA7D6;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-top: 10px;
+      }
+
+      #result {
+        font-size: 1.2em;
+        margin-top: 20px;
+        font-weight: bold;
+      }
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Spicy+Rice" rel="stylesheet">
+  </head>
+  <body>
+    <section class="overlay">
+      <h1>Guess the right number!</h1>
+      <form id="guessForm">
+        <label for="guess">Enter a number between 1-10:</label>
+        <br>
+        <input type="number" name="guess" id="guess" required min="1" max="10">
+        <br>
+        <input type="submit" class="submit" value="Submit">
+      </form>
+      <div id="result"></div>
+    </section>
+
+    <script>
+      const form = document.getElementById('guessForm');
+      const result = document.getElementById('result');
+      const correctNumber = Math.floor(Math.random() * 10) + 1;
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const guess = parseInt(document.getElementById('guess').value);
+        
+        if (guess === correctNumber) {
+          result.textContent = 'You guessed correctly!';
+          result.style.color = 'green';
+        } else {
+          result.textContent = guess < correctNumber ? 'Try a higher number...' : 'Try a lower number...';
+          result.style.color = 'red';
+        }
+      });
+    </script>
+  </body>
+</html>
